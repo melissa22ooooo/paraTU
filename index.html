@@ -17,7 +17,7 @@ html,body{
     color:white;
 }
 
-/* INICIO */
+/* PANTALLA DE INICIO */
 .start-screen{
     position:fixed;
     inset:0;
@@ -27,6 +27,12 @@ html,body{
     justify-content:center;
     align-items:center;
     z-index:1000;
+    text-align:center;
+}
+
+.start-screen h2{
+    font-size:2em;
+    margin-bottom:20px;
 }
 
 .start-btn{
@@ -37,6 +43,11 @@ html,body{
     border:none;
     border-radius:30px;
     cursor:pointer;
+}
+
+.start-btn:hover{
+    background:#ff4d6d;
+    color:white;
 }
 
 /* CONTENIDO */
@@ -70,7 +81,7 @@ html,body{
     z-index:5;
 }
 
-/* FOTOS */
+/* IMÁGENES */
 .photo{
     position:absolute;
     top:18%;
@@ -87,7 +98,7 @@ html,body{
     box-shadow:0 0 35px rgba(255,255,255,0.4);
 }
 
-/* FINAL */
+/* TEXTO FINAL */
 .final{
     position:absolute;
     top:65%;
@@ -112,7 +123,7 @@ html,body{
     to{transform:translateY(-10vh);opacity:0;}
 }
 
-/* PLAYER OCULTO */
+/* YOUTUBE PLAYER OCULTO */
 #player{display:none;}
 </style>
 </head>
@@ -128,6 +139,7 @@ html,body{
 
 <div class="counter" id="counter"></div>
 
+<!-- ESCENAS -->
 <div class="scene">6 de Enero de 2026 🖤</div>
 <div class="scene">Un mensaje que parecía pequeño…</div>
 <div class="scene">Pero que terminó siendo el inicio de algo muy grande.</div>
@@ -170,8 +182,12 @@ let player,playerReady=false;
 
 function onYouTubeIframeAPIReady(){
     player=new YT.Player('player',{
-        videoId:'JwAS9f_b8Js',
-        playerVars:{autoplay:0,loop:1,playlist:'JwAS9f_b8Js'},
+        videoId:'hkrBbBJg3S4',  // TU MÚSICA NUEVA 🎵
+        playerVars:{
+            autoplay:0,
+            loop:1,
+            playlist:'hkrBbBJg3S4'
+        },
         events:{onReady:()=>playerReady=true}
     });
 }
@@ -179,9 +195,11 @@ function onYouTubeIframeAPIReady(){
 function startExperience(){
     document.getElementById("startScreen").style.display="none";
     document.getElementById("content").style.display="block";
+
     startScenes();
     startHearts();
     startCounter();
+
     if(playerReady) player.playVideo();
 }
 
@@ -202,11 +220,11 @@ function startCounter(){
     },1000);
 }
 
-/* ESCENAS RÁPIDAS */
+/* ESCENAS */
 function startScenes(){
     const scenes=document.querySelectorAll('.scene,.photo');
-    const visible=4000; // 4s visible
-    const gap=4200;     // 4.2s entre escenas
+    const visible=4000;   // 4s visibles
+    const gap=4200;       // 4.2s entre escenas
 
     scenes.forEach((el,i)=>{
         setTimeout(()=>{
