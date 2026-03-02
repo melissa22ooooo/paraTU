@@ -10,25 +10,26 @@ body{
     margin:0;
     overflow:hidden;
     background:black;
-    font-family: 'Georgia', serif;
+    font-family:'Georgia',serif;
     color:white;
 }
 
-/* Fondo pollitos */
-.background{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:url("https://i.imgur.com/7b1G6QG.png");
-    background-size:200px;
-    opacity:0.15;
-    animation:moveBg 25s linear infinite;
-    z-index:-2;
+/* Fondo animado con pollitos */
+.chick{
+    position:absolute;
+    font-size:25px;
+    animation:float linear infinite;
 }
 
-@keyframes moveBg{
-    from{background-position:0 0;}
-    to{background-position:400px 400px;}
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
 }
 
 /* Corazones */
@@ -36,14 +37,10 @@ body{
     position:absolute;
     color:#ff4d6d;
     font-size:20px;
-    animation:floatUp linear infinite;
-}
-@keyframes floatUp{
-    from{transform:translateY(100vh);opacity:1;}
-    to{transform:translateY(-10vh);opacity:0;}
+    animation:float linear infinite;
 }
 
-/* Slides texto */
+/* Slides */
 .slide{
     position:absolute;
     width:100%;
@@ -91,7 +88,6 @@ body{
     to{opacity:1;}
 }
 
-/* Texto final */
 .final-text{
     position:absolute;
     width:100%;
@@ -103,7 +99,7 @@ body{
     animation-delay:60s;
 }
 
-/* Carta cerrándose */
+/* Carta */
 .letter{
     position:fixed;
     bottom:-100%;
@@ -132,8 +128,6 @@ body{
 </head>
 
 <body>
-
-<div class="background"></div>
 
 <div class="slide"><h1>6 de Enero 🖤</h1></div>
 <div class="slide"><h1>Todo empezó con un mensaje… y hablamos hasta las 3am.</h1></div>
@@ -175,7 +169,18 @@ function onYouTubeIframeAPIReady(){
     });
 }
 
-/* Corazones flotando */
+/* Crear pollitos */
+function createChick(){
+    const chick=document.createElement("div");
+    chick.classList.add("chick");
+    chick.innerHTML="🐥";
+    chick.style.left=Math.random()*100+"vw";
+    chick.style.animationDuration=(4+Math.random()*6)+"s";
+    document.body.appendChild(chick);
+    setTimeout(()=>{chick.remove();},10000);
+}
+
+/* Crear corazones */
 function createHeart(){
     const heart=document.createElement("div");
     heart.classList.add("heart");
@@ -185,6 +190,8 @@ function createHeart(){
     document.body.appendChild(heart);
     setTimeout(()=>{heart.remove();},8000);
 }
+
+setInterval(createChick,800);
 setInterval(createHeart,500);
 </script>
 
