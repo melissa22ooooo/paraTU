@@ -6,18 +6,42 @@
 <title>Nuestra historia 🖤</title>
 
 <style>
-body{
-    margin:0;
-    overflow:hidden;
-    background:linear-gradient(to bottom,#000000,#1a001a);
-    font-family:'Georgia',serif;
-    color:white;
-    text-align:center;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
+
+/* ===== CINEMA BASE ===== */
+.cinema{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle,#140014,#000);
 }
 
-/* Pantalla inicio */
-.start-screen{
-    position:fixed;
+/* ===== FILM GRAIN ===== */
+.grain{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://i.imgur.com/8Qx6VJk.png');
+    opacity:0.08;
+    pointer-events:none;
+    z-index:50;
+}
+
+/* ===== FADE ===== */
+.fade{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:black;
+    z-index:20;
+    opacity:0;
+    transition:2.5s;
+}
+
+/* ===== START ===== */
+.start{
+    position:absolute;
     width:100%;
     height:100%;
     background:black;
@@ -25,241 +49,270 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    z-index:10;
+    z-index:30;
 }
 
-.start-btn{
-    padding:16px 35px;
-    font-size:1.2em;
+.start h1{
+    font-size:2.5em;
+    margin-bottom:30px;
+    opacity:0;
+    animation:fadeIn 3s forwards;
+}
+
+.start button{
+    padding:18px 50px;
+    border-radius:40px;
+    border:none;
+    font-size:1.1em;
+    cursor:pointer;
     background:white;
     color:black;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
     transition:0.4s;
 }
 
-.start-btn:hover{
+.start button:hover{
     background:#ff4d6d;
     color:white;
+    transform:scale(1.05);
 }
 
-/* Contador */
+@keyframes fadeIn{to{opacity:1;}}
+
+/* ===== COUNTER ===== */
 .counter{
     position:absolute;
-    top:6%;
+    top:4%;
     width:100%;
-    font-size:1em;
-    opacity:0.9;
+    text-align:center;
+    font-size:0.9em;
+    opacity:0;
+    transition:2s;
+    z-index:10;
 }
+.counter span{color:#ff4d6d}
 
-.counter span{
-    font-size:1.2em;
-    color:#ff4d6d;
-}
-
-/* Slides */
-.slide{
+/* ===== SCENE ===== */
+.scene{
     position:absolute;
     width:100%;
-    top:40%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     opacity:0;
-    padding:0 25px;
-    font-size:1.3em;
+    z-index:5;
 }
 
-.fade{
-    animation:fade 8s forwards;
+.text{
+    font-size:1.7em;
+    max-width:80%;
+    line-height:1.6;
+    animation:cinemaText 9s forwards;
 }
 
-@keyframes fade{
-    0%{opacity:0;}
-    20%{opacity:1;}
-    80%{opacity:1;}
-    100%{opacity:0;}
+@keyframes cinemaText{
+    0%{opacity:0;transform:translateY(40px);}
+    15%{opacity:1;transform:translateY(0);}
+    85%{opacity:1;}
+    100%{opacity:0;transform:translateY(-40px);}
 }
 
-/* Fotos */
+/* ===== PHOTO SCENE ===== */
 .photo{
     position:absolute;
     width:100%;
-    top:22%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     opacity:0;
-    transition:2s;
+    z-index:6;
 }
 
 .photo img{
     max-width:85%;
-    border-radius:20px;
-    box-shadow:0 0 40px rgba(255,255,255,0.4);
+    border-radius:25px;
+    animation:photoZoom 18s forwards;
+    box-shadow:0 0 60px rgba(255,255,255,0.4);
 }
 
-/* Final dulce */
-.final-text{
+@keyframes photoZoom{
+    0%{transform:scale(1.15);opacity:0;}
+    15%{opacity:1;}
+    85%{opacity:1;}
+    100%{transform:scale(1);opacity:0;}
+}
+
+/* ===== FINAL ===== */
+.final{
     position:absolute;
     width:100%;
-    top:70%;
-    font-size:1.8em;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-size:2.2em;
     opacity:0;
-    transition:3s;
+    transition:4s;
+    z-index:8;
 }
 
-/* Corazones */
+/* ===== CREDITS ===== */
+.credits{
+    position:absolute;
+    width:100%;
+    bottom:-100%;
+    text-align:center;
+    font-size:1.2em;
+    opacity:0.8;
+    z-index:9;
+    animation:creditsRoll 35s linear forwards;
+}
+
+@keyframes creditsRoll{
+    from{bottom:-100%;}
+    to{bottom:110%;}
+}
+
+/* ===== HEARTS ===== */
 .heart{
     position:absolute;
-    font-size:20px;
-    animation:float linear infinite;
+    font-size:16px;
+    opacity:0.6;
+    animation:float 12s linear forwards;
 }
 
 @keyframes float{
-    from{transform:translateY(100vh);opacity:1;}
-    to{transform:translateY(-10vh);opacity:0;}
+    from{transform:translateY(110vh);}
+    to{transform:translateY(-10vh);}
 }
 
-#player{
-    position:absolute;
-    width:1px;
-    height:1px;
-    left:-9999px;
-}
+/* ===== PLAYER ===== */
+#player{position:absolute;width:1px;height:1px;left:-9999px;}
 </style>
 </head>
 
 <body>
 
-<div class="start-screen" id="startScreen">
-    <h2>Para ti 🖤</h2>
-    <button class="start-btn" onclick="startExperience()">Empieza nuestra historia 🖤</button>
-</div>
+<div class="cinema">
 
-<div id="content" style="display:none;">
+<div class="fade" id="fade"></div>
+<div class="grain"></div>
+
+<div class="start" id="start">
+    <h1>Nuestra historia 🖤</h1>
+    <button onclick="startMovie()">Reproducir película 🎬</button>
+</div>
 
 <div class="counter" id="counter"></div>
 
-<div class="slide">6 de Enero de 2026 🖤</div>
-<div class="slide">Un mensaje que parecía pequeño…</div>
-<div class="slide">Pero que terminó siendo el inicio de algo muy grande.</div>
-<div class="slide">Hablamos hasta las 3 de la madrugada…</div>
-<div class="slide">Y desde ese día, cada noche tiene tu nombre.</div>
-<div class="slide">Descubrí que mi parte favorita del día… eres tú.</div>
-<div class="slide">Tu voz.</div>
-<div class="slide">Tu risa.</div>
-<div class="slide">Tu forma de hacerme sentir tranquila.</div>
+<!-- SCENES -->
+<div class="scene"><div class="text">6 de Enero de 2026 🖤</div></div>
+<div class="scene"><div class="text">Un mensaje que parecía pequeño…</div></div>
+<div class="scene"><div class="text">Pero terminó siendo el inicio de algo eterno.</div></div>
+<div class="scene"><div class="text">Hablamos hasta las 3 de la madrugada…</div></div>
+<div class="scene"><div class="text">Y desde ese día, cada noche tiene tu nombre.</div></div>
+<div class="scene"><div class="text">Mi lugar seguro eres tú.</div></div>
 
-<div class="photo" id="fotoEl">
-    <img src="foto-el.jpg">
+<div class="photo"><img src="foto-el.jpg"></div>
+
+<div class="scene"><div class="text">La primera vez que te vi pasar en tu moto…</div></div>
+<div class="scene"><div class="text">Mi corazón ya sabía lo que venía.</div></div>
+
+<div class="photo"><img src="abrazo.jpg"></div>
+
+<div class="scene"><div class="text">Gracias por cuidarme.</div></div>
+<div class="scene"><div class="text">Gracias por elegirme.</div></div>
+<div class="scene"><div class="text">Gracias por quedarte.</div></div>
+
+<div class="final" id="final">
+    <div>Pío Pío 🐥❤️</div><br>
+    <div>Me haces muy feliz.</div><br>
+    <div>Esto apenas comienza…</div>
 </div>
 
-<div class="slide">La primera vez que te vi pasar en tu moto…</div>
-<div class="slide">Intenté actuar normal.</div>
-<div class="slide">Pero terminé sonrojándome.</div>
-<div class="slide">Y desde entonces soy tu “rojita”.</div>
-<div class="slide">El primer abrazo.</div>
-<div class="slide">El primer beso en la frente.</div>
-<div class="slide">Ese momento donde todo se sintió correcto.</div>
-
-<div class="photo" id="fotoAbrazo">
-    <img src="abrazo.jpg">
-</div>
-
-<div class="slide">Gracias por cuidarme.</div>
-<div class="slide">Gracias por elegir quedarte.</div>
-<div class="slide">Gracias por hacerme sentir especial.</div>
-
-<div class="final-text" id="finalText">
-    Pío Pío 🐥❤️<br>
-    Me haces muy feliz.<br><br>
-    Y esto apenas empieza.
-</div>
-
+<div class="credits" id="credits">
+    <br><br>
+    Nuestra Historia<br><br>
+    Una película hecha con amor 🖤<br><br>
+    Para siempre…
 </div>
 
 <div id="player"></div>
 
+</div>
+
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
-
-let player;
-let playerReady = false;
+let player,ready=false;
 
 function onYouTubeIframeAPIReady(){
-    player = new YT.Player('player',{
+    player=new YT.Player('player',{
         videoId:'JwAS9f_b8Js',
-        playerVars:{
-            autoplay:0,
-            loop:1,
-            playlist:'JwAS9f_b8Js'
-        },
-        events:{
-            'onReady': function(){
-                playerReady = true;
-            }
-        }
+        playerVars:{autoplay:0,loop:1,playlist:'JwAS9f_b8Js'},
+        events:{onReady:()=>{ready=true;}}
     });
 }
 
-function startExperience(){
-    document.getElementById("startScreen").style.display="none";
-    document.getElementById("content").style.display="block";
-
-    startSlides();
-    startHearts();
+function startMovie(){
+    document.getElementById("start").style.opacity="0";
+    setTimeout(()=>document.getElementById("start").style.display="none",1500);
+    document.getElementById("counter").style.opacity="1";
+    if(ready) player.playVideo();
     startCounter();
-
-    if(playerReady){
-        player.playVideo();
-    }
+    startScenes();
+    startHearts();
 }
 
-/* Contador */
+/* COUNTER */
 function startCounter(){
-    const startDate = new Date("2026-01-06T00:00:00");
+    const startDate=new Date("2026-01-06T00:00:00");
     setInterval(()=>{
-        const now = new Date();
-        let diff = now - startDate;
-        if(diff < 0) diff = 0;
-
-        const d = Math.floor(diff/(1000*60*60*24));
-        const h = Math.floor((diff/(1000*60*60))%24);
-        const m = Math.floor((diff/(1000*60))%60);
-        const s = Math.floor((diff/1000)%60);
-
-        document.getElementById("counter").innerHTML =
-        `Llevamos <span>${d}</span> días 
-        <span>${h}</span> horas 
-        <span>${m}</span> minutos 
-        <span>${s}</span> segundos 🖤`;
+        const now=new Date();
+        let diff=now-startDate;
+        if(diff<0) diff=0;
+        const d=Math.floor(diff/(1000*60*60*24));
+        const h=Math.floor((diff/(1000*60*60))%24);
+        const m=Math.floor((diff/(1000*60))%60);
+        const s=Math.floor((diff/1000)%60);
+        counter.innerHTML=`Llevamos <span>${d}</span>d <span>${h}</span>h <span>${m}</span>m <span>${s}</span>s 🖤`;
     },1000);
 }
 
-/* Slides */
-function startSlides(){
-    const slides = document.querySelectorAll(".slide");
-    slides.forEach((slide,index)=>{
+/* SCENES */
+function startScenes(){
+    const scenes=document.querySelectorAll(".scene,.photo");
+    scenes.forEach((el,i)=>{
         setTimeout(()=>{
-            slide.classList.add("fade");
-        }, index*8000);
+            el.style.opacity="1";
+            setTimeout(()=>{el.style.opacity="0";},10000);
+        },i*10500);
     });
 
-    setTimeout(()=>{document.getElementById("fotoEl").style.opacity="1";},64000);
-    setTimeout(()=>{document.getElementById("fotoEl").style.opacity="0";},78000);
-    setTimeout(()=>{document.getElementById("fotoAbrazo").style.opacity="1";},104000);
-    setTimeout(()=>{document.getElementById("finalText").style.opacity="1";},120000);
+    setTimeout(()=>{
+        document.getElementById("final").style.opacity="1";
+    },scenes.length*10500);
+
+    setTimeout(()=>{
+        document.getElementById("credits").style.animation="creditsRoll 35s linear forwards";
+    },scenes.length*10500+12000);
 }
 
-/* Corazones */
+/* HEARTS */
 function startHearts(){
     setInterval(()=>{
-        const heart=document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="❤";
-        heart.style.left=Math.random()*100+"vw";
-        heart.style.animationDuration=(4+Math.random()*6)+"s";
-        document.body.appendChild(heart);
-        setTimeout(()=>{heart.remove();},10000);
-    },700);
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="❤";
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(12+Math.random()*18)+"px";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),12000);
+    },900);
 }
-
 </script>
 
 </body>
