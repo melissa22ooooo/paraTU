@@ -1,8 +1,11 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nuestra historia 🖤</title><style>
+<title>Nuestra historia 🖤</title>
+
+<style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 
@@ -13,16 +16,7 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     background:radial-gradient(circle,#140014,#000);
 }
 
-.fade{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:black;
-    z-index:20;
-    opacity:0;
-    transition:2.5s;
-}
-
+/* ===== START ===== */
 .start{
     position:absolute;
     width:100%;
@@ -39,7 +33,7 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     font-size:2.5em;
     margin-bottom:30px;
     opacity:0;
-    animation:fadeIn 3s forwards;
+    animation:fadeIn 2s forwards;
 }
 
 .start button{
@@ -61,6 +55,7 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 
 @keyframes fadeIn{to{opacity:1;}}
 
+/* ===== COUNTER ===== */
 .counter{
     position:absolute;
     top:4%;
@@ -68,11 +63,12 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     text-align:center;
     font-size:0.9em;
     opacity:0;
-    transition:2s;
+    transition:1.5s;
     z-index:10;
 }
 .counter span{color:#ff4d6d}
 
+/* ===== SCENES ===== */
 .scene{
     position:absolute;
     width:100%;
@@ -86,19 +82,20 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 }
 
 .text{
-    font-size:1.7em;
-    max-width:80%;
-    line-height:1.6;
-    animation:cinemaText 7s forwards;
+    font-size:1.6em;
+    max-width:85%;
+    line-height:1.5;
+    animation:cinemaText 4s forwards;
 }
 
 @keyframes cinemaText{
-    0%{opacity:0;transform:translateY(40px);}    
-    15%{opacity:1;transform:translateY(0);}    
-    85%{opacity:1;}    
-    100%{opacity:0;transform:translateY(-40px);} 
+    0%{opacity:0;transform:translateY(25px);}
+    20%{opacity:1;transform:translateY(0);}
+    80%{opacity:1;}
+    100%{opacity:0;transform:translateY(-25px);}
 }
 
+/* ===== PHOTOS ===== */
 .photo{
     position:absolute;
     width:100%;
@@ -113,17 +110,18 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 .photo img{
     max-width:85%;
     border-radius:25px;
-    animation:photoZoom 14s forwards;
-    box-shadow:0 0 60px rgba(255,255,255,0.4);
+    animation:photoZoom 7s forwards;
+    box-shadow:0 0 50px rgba(255,255,255,0.4);
 }
 
 @keyframes photoZoom{
-    0%{transform:scale(1.15);opacity:0;}
+    0%{transform:scale(1.1);opacity:0;}
     15%{opacity:1;}
     85%{opacity:1;}
     100%{transform:scale(1);opacity:0;}
 }
 
+/* ===== FINAL ===== */
 .final{
     position:absolute;
     width:100%;
@@ -133,21 +131,21 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     justify-content:center;
     align-items:center;
     text-align:center;
-    font-size:2.2em;
+    font-size:2em;
     opacity:0;
-    transition:4s;
+    transition:3s;
     z-index:8;
 }
 
+/* ===== CREDITS ===== */
 .credits{
     position:absolute;
     width:100%;
     bottom:-100%;
     text-align:center;
-    font-size:1.2em;
+    font-size:1.1em;
     opacity:0.8;
     z-index:9;
-    animation:creditsRoll 25s linear forwards;
 }
 
 @keyframes creditsRoll{
@@ -155,40 +153,73 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     to{bottom:110%;}
 }
 
+/* ===== HEARTS ===== */
 .heart{
     position:absolute;
     font-size:16px;
     opacity:0.6;
-    animation:float 10s linear forwards;
+    animation:float 8s linear forwards;
 }
 
 @keyframes float{
-    from{transform:translateY(110vh);}    
-    to{transform:translateY(-10vh);} 
+    from{transform:translateY(110vh);}
+    to{transform:translateY(-10vh);}
 }
 
+/* ===== PLAYER ===== */
 #player{position:absolute;width:1px;height:1px;left:-9999px;}
-</style></head><body><div class="cinema"><div class="fade" id="fade"></div><div class="start" id="start">
+</style>
+</head>
+
+<body>
+
+<div class="cinema">
+
+<div class="start" id="start">
     <h1>Nuestra historia 🖤</h1>
-    <button onclick="startMovie()">Reproducir película 🎬</button>
-</div><div class="counter" id="counter"></div><div class="scene"><div class="text">6 de Enero de 2026 🖤</div></div>
+    <button onclick="startMovie()">Reproducir 🎬</button>
+</div>
+
+<div class="counter" id="counter"></div>
+
+<!-- ESCENAS -->
+<div class="scene"><div class="text">6 de Enero de 2026 🖤</div></div>
 <div class="scene"><div class="text">Un mensaje que parecía pequeño…</div></div>
 <div class="scene"><div class="text">Pero terminó siendo el inicio de algo eterno.</div></div>
 <div class="scene"><div class="text">Hablamos hasta las 3 de la madrugada…</div></div>
 <div class="scene"><div class="text">Y desde ese día, cada noche tiene tu nombre.</div></div>
-<div class="scene"><div class="text">Mi lugar seguro eres tú.</div></div><div class="photo"><img src="foto-el.jpg"></div><div class="scene"><div class="text">La primera vez que te vi pasar en tu moto…</div></div>
-<div class="scene"><div class="text">Mi corazón ya sabía lo que venía.</div></div><div class="photo"><img src="abrazo.jpg"></div><div class="scene"><div class="text">Gracias por cuidarme.</div></div>
+<div class="scene"><div class="text">Mi lugar seguro eres tú.</div></div>
+
+<div class="photo"><img src="foto-el.jpg"></div>
+
+<div class="scene"><div class="text">La primera vez que te vi pasar en tu moto…</div></div>
+<div class="scene"><div class="text">Mi corazón ya sabía lo que venía.</div></div>
+
+<div class="photo"><img src="abrazo.jpg"></div>
+
+<div class="scene"><div class="text">Gracias por cuidarme.</div></div>
 <div class="scene"><div class="text">Gracias por elegirme.</div></div>
-<div class="scene"><div class="text">Gracias por quedarte.</div></div><div class="final" id="final">
+<div class="scene"><div class="text">Gracias por quedarte.</div></div>
+
+<div class="final" id="final">
     <div>Pío Pío 🐥❤️</div><br>
     <div>Me haces muy feliz.</div><br>
     <div>Esto apenas comienza…</div>
-</div><div class="credits" id="credits">
+</div>
+
+<div class="credits" id="credits">
     <br><br>
     Nuestra Historia<br><br>
     Una película hecha con amor 🖤<br><br>
     Para siempre…
-</div><div id="player"></div></div><script src="https://www.youtube.com/iframe_api"></script><script>
+</div>
+
+<div id="player"></div>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
 let player,ready=false;
 
 function onYouTubeIframeAPIReady(){
@@ -201,7 +232,7 @@ function onYouTubeIframeAPIReady(){
 
 function startMovie(){
     document.getElementById("start").style.opacity="0";
-    setTimeout(()=>document.getElementById("start").style.display="none",1500);
+    setTimeout(()=>document.getElementById("start").style.display="none",1000);
     document.getElementById("counter").style.opacity="1";
     if(ready) player.playVideo();
     startCounter();
@@ -209,6 +240,7 @@ function startMovie(){
     startHearts();
 }
 
+/* CONTADOR */
 function startCounter(){
     const startDate=new Date("2026-01-06T00:00:00");
     setInterval(()=>{
@@ -223,24 +255,26 @@ function startCounter(){
     },1000);
 }
 
+/* ESCENAS RÁPIDAS */
 function startScenes(){
     const scenes=document.querySelectorAll('.scene,.photo');
     scenes.forEach((el,i)=>{
         setTimeout(()=>{
             el.style.opacity="1";
-            setTimeout(()=>{el.style.opacity="0";},6000);
-        },i*6500);
+            setTimeout(()=>{el.style.opacity="0";},2500); // visible
+        },i*2700); // separación
     });
 
     setTimeout(()=>{
         document.getElementById("final").style.opacity="1";
-    },scenes.length*6500);
+    },scenes.length*2700);
 
     setTimeout(()=>{
-        document.getElementById("credits").style.animation="creditsRoll 25s linear forwards";
-    },scenes.length*6500+8000);
+        document.getElementById("credits").style.animation="creditsRoll 18s linear forwards";
+    },scenes.length*2700+3500);
 }
 
+/* CORAZONES */
 function startHearts(){
     setInterval(()=>{
         const h=document.createElement('div');
@@ -249,8 +283,10 @@ function startHearts(){
         h.style.left=Math.random()*100+'vw';
         h.style.fontSize=(12+Math.random()*18)+'px';
         document.body.appendChild(h);
-        setTimeout(()=>h.remove(),10000);
-    },800);
+        setTimeout(()=>h.remove(),8000);
+    },700);
 }
-</script></body>
+</script>
+
+</body>
 </html>
