@@ -6,19 +6,18 @@
 <title>Nuestra historia 🖤</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
-
-.cinema{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:radial-gradient(circle,#140014,#000);
+body{
+    margin:0;
+    overflow:hidden;
+    background:linear-gradient(to bottom,#000000,#120012);
+    font-family:'Georgia',serif;
+    color:white;
+    text-align:center;
 }
 
-/* ===== START ===== */
-.start{
-    position:absolute;
+/* INICIO */
+.start-screen{
+    position:fixed;
     width:100%;
     height:100%;
     background:black;
@@ -26,218 +25,168 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    z-index:30;
+    z-index:10;
 }
 
-.start h1{
-    font-size:2.5em;
-    margin-bottom:30px;
-    opacity:0;
-    animation:fadeIn 2s forwards;
-}
-
-.start button{
-    padding:18px 50px;
-    border-radius:40px;
-    border:none;
-    font-size:1.1em;
-    cursor:pointer;
+.start-btn{
+    padding:16px 35px;
+    font-size:1.2em;
     background:white;
     color:black;
-    transition:0.4s;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.start button:hover{
+.start-btn:hover{
     background:#ff4d6d;
     color:white;
-    transform:scale(1.05);
 }
 
-@keyframes fadeIn{to{opacity:1;}}
-
-/* ===== COUNTER ===== */
+/* CONTADOR */
 .counter{
     position:absolute;
     top:4%;
     width:100%;
-    text-align:center;
-    font-size:0.9em;
-    opacity:0;
-    transition:1.5s;
-    z-index:10;
+    font-size:0.95em;
+    opacity:0.9;
 }
-.counter span{color:#ff4d6d}
+.counter span{ color:#ff4d6d; }
 
-/* ===== SCENES ===== */
+/* ESCENAS */
 .scene{
     position:absolute;
     width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+    top:42%;
     opacity:0;
-    z-index:5;
+    font-size:1.4em;
+    padding:0 20px;
+    transition:1s;
 }
 
-.text{
-    font-size:1.6em;
-    max-width:85%;
-    line-height:1.5;
-    animation:cinemaText 4s forwards;
-}
-
-@keyframes cinemaText{
-    0%{opacity:0;transform:translateY(25px);}
-    20%{opacity:1;transform:translateY(0);}
-    80%{opacity:1;}
-    100%{opacity:0;transform:translateY(-25px);}
-}
-
-/* ===== PHOTOS ===== */
+/* FOTOS */
 .photo{
     position:absolute;
     width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    top:22%;
     opacity:0;
-    z-index:6;
+    transition:1.5s;
 }
 
 .photo img{
     max-width:85%;
-    border-radius:25px;
-    animation:photoZoom 7s forwards;
-    box-shadow:0 0 50px rgba(255,255,255,0.4);
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(255,255,255,0.4);
 }
 
-@keyframes photoZoom{
-    0%{transform:scale(1.1);opacity:0;}
-    15%{opacity:1;}
-    85%{opacity:1;}
-    100%{transform:scale(1);opacity:0;}
-}
-
-/* ===== FINAL ===== */
+/* FINAL */
 .final{
     position:absolute;
     width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    font-size:2em;
+    top:65%;
+    font-size:1.8em;
     opacity:0;
-    transition:3s;
-    z-index:8;
+    transition:2s;
 }
 
-/* ===== CREDITS ===== */
-.credits{
-    position:absolute;
-    width:100%;
-    bottom:-100%;
-    text-align:center;
-    font-size:1.1em;
-    opacity:0.8;
-    z-index:9;
-}
-
-@keyframes creditsRoll{
-    from{bottom:-100%;}
-    to{bottom:110%;}
-}
-
-/* ===== HEARTS ===== */
+/* CORAZONES */
 .heart{
     position:absolute;
-    font-size:16px;
-    opacity:0.6;
-    animation:float 8s linear forwards;
+    font-size:20px;
+    animation:float linear infinite;
 }
 
 @keyframes float{
-    from{transform:translateY(110vh);}
-    to{transform:translateY(-10vh);}
+    from{transform:translateY(100vh);opacity:1;}
+    to{transform:translateY(-10vh);opacity:0;}
 }
 
-/* ===== PLAYER ===== */
-#player{position:absolute;width:1px;height:1px;left:-9999px;}
+/* PLAYER OCULTO */
+#player{
+    position:absolute;
+    width:1px;
+    height:1px;
+    left:-9999px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="cinema">
-
-<div class="start" id="start">
-    <h1>Nuestra historia 🖤</h1>
-    <button onclick="startMovie()">Reproducir 🎬</button>
+<div class="start-screen" id="startScreen">
+    <h2>Para ti 🖤</h2>
+    <button class="start-btn" onclick="startExperience()">Empieza nuestra historia 🖤</button>
 </div>
+
+<div id="content" style="display:none;">
 
 <div class="counter" id="counter"></div>
 
 <!-- ESCENAS -->
-<div class="scene"><div class="text">6 de Enero de 2026 🖤</div></div>
-<div class="scene"><div class="text">Un mensaje que parecía pequeño…</div></div>
-<div class="scene"><div class="text">Pero terminó siendo el inicio de algo eterno.</div></div>
-<div class="scene"><div class="text">Hablamos hasta las 3 de la madrugada…</div></div>
-<div class="scene"><div class="text">Y desde ese día, cada noche tiene tu nombre.</div></div>
-<div class="scene"><div class="text">Mi lugar seguro eres tú.</div></div>
+<div class="scene">6 de Enero de 2026 🖤</div>
+<div class="scene">Un mensaje que parecía pequeño…</div>
+<div class="scene">Pero que terminó siendo el inicio de algo muy grande.</div>
+<div class="scene">Hablamos hasta las 3 de la madrugada…</div>
+<div class="scene">Y desde ese día, cada noche tiene tu nombre.</div>
+<div class="scene">Descubrí que mi parte favorita del día… eres tú.</div>
+<div class="scene">Tu voz.</div>
+<div class="scene">Tu risa.</div>
+<div class="scene">Tu forma de hacerme sentir tranquila.</div>
 
-<div class="photo"><img src="foto-el.jpg"></div>
-
-<div class="scene"><div class="text">La primera vez que te vi pasar en tu moto…</div></div>
-<div class="scene"><div class="text">Mi corazón ya sabía lo que venía.</div></div>
-
-<div class="photo"><img src="abrazo.jpg"></div>
-
-<div class="scene"><div class="text">Gracias por cuidarme.</div></div>
-<div class="scene"><div class="text">Gracias por elegirme.</div></div>
-<div class="scene"><div class="text">Gracias por quedarte.</div></div>
-
-<div class="final" id="final">
-    <div>Pío Pío 🐥❤️</div><br>
-    <div>Me haces muy feliz.</div><br>
-    <div>Esto apenas comienza…</div>
+<div class="photo">
+    <img src="foto-el.jpg">
 </div>
 
-<div class="credits" id="credits">
-    <br><br>
-    Nuestra Historia<br><br>
-    Una película hecha con amor 🖤<br><br>
-    Para siempre…
+<div class="scene">La primera vez que te vi pasar en tu moto…</div>
+<div class="scene">Intenté actuar normal.</div>
+<div class="scene">Pero terminé sonrojándome.</div>
+<div class="scene">Y desde entonces soy tu “rojita”.</div>
+<div class="scene">El primer abrazo.</div>
+<div class="scene">El primer beso en la frente.</div>
+<div class="scene">Ese momento donde todo se sintió correcto.</div>
+
+<div class="photo">
+    <img src="abrazo.jpg">
+</div>
+
+<div class="scene">Gracias por cuidarme.</div>
+<div class="scene">Gracias por elegir quedarte.</div>
+<div class="scene">Gracias por hacerme sentir especial.</div>
+
+<div class="final" id="finalText">
+    Pío Pío 🐥❤️<br>
+    Me haces muy feliz.<br><br>
+    Y esto apenas empieza.
+</div>
+
 </div>
 
 <div id="player"></div>
 
-</div>
-
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
-let player,ready=false;
+
+let player;
+let playerReady=false;
 
 function onYouTubeIframeAPIReady(){
     player=new YT.Player('player',{
         videoId:'JwAS9f_b8Js',
         playerVars:{autoplay:0,loop:1,playlist:'JwAS9f_b8Js'},
-        events:{onReady:()=>{ready=true;}}
+        events:{ onReady:()=>{playerReady=true;} }
     });
 }
 
-function startMovie(){
-    document.getElementById("start").style.opacity="0";
-    setTimeout(()=>document.getElementById("start").style.display="none",1000);
-    document.getElementById("counter").style.opacity="1";
-    if(ready) player.playVideo();
-    startCounter();
+function startExperience(){
+    document.getElementById("startScreen").style.display="none";
+    document.getElementById("content").style.display="block";
+
     startScenes();
     startHearts();
+    startCounter();
+
+    if(playerReady) player.playVideo();
 }
 
 /* CONTADOR */
@@ -247,45 +196,51 @@ function startCounter(){
         const now=new Date();
         let diff=now-startDate;
         if(diff<0) diff=0;
+
         const d=Math.floor(diff/(1000*60*60*24));
         const h=Math.floor((diff/(1000*60*60))%24);
         const m=Math.floor((diff/(1000*60))%60);
         const s=Math.floor((diff/1000)%60);
-        counter.innerHTML=`Llevamos <span>${d}</span>d <span>${h}</span>h <span>${m}</span>m <span>${s}</span>s 🖤`;
+
+        document.getElementById("counter").innerHTML=
+        `Llevamos <span>${d}</span> días 
+         <span>${h}</span> horas 
+         <span>${m}</span> minutos 
+         <span>${s}</span> segundos 🖤`;
     },1000);
 }
 
 /* ESCENAS RÁPIDAS */
 function startScenes(){
     const scenes=document.querySelectorAll('.scene,.photo');
+    const duration=5000;   // 5s visibles
+    const gap=5200;        // 5.2s entre escenas
+
     scenes.forEach((el,i)=>{
         setTimeout(()=>{
             el.style.opacity="1";
-            setTimeout(()=>{el.style.opacity="0";},2500); // visible
-        },i*2700); // separación
+            setTimeout(()=>{el.style.opacity="0";},duration);
+        },i*gap);
     });
 
     setTimeout(()=>{
-        document.getElementById("final").style.opacity="1";
-    },scenes.length*2700);
-
-    setTimeout(()=>{
-        document.getElementById("credits").style.animation="creditsRoll 18s linear forwards";
-    },scenes.length*2700+3500);
+        document.getElementById("finalText").style.opacity="1";
+    },scenes.length*gap);
 }
 
 /* CORAZONES */
 function startHearts(){
     setInterval(()=>{
-        const h=document.createElement('div');
-        h.className='heart';
-        h.innerHTML='❤';
-        h.style.left=Math.random()*100+'vw';
-        h.style.fontSize=(12+Math.random()*18)+'px';
-        document.body.appendChild(h);
-        setTimeout(()=>h.remove(),8000);
-    },700);
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(4+Math.random()*4)+"s";
+        document.body.appendChild(heart);
+        setTimeout(()=>{heart.remove();},8000);
+    },600);
 }
+
 </script>
 
 </body>
