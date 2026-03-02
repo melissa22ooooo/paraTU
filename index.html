@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nuestra historia 🖤</title>
-
-<style>
+<title>Nuestra historia 🖤</title><style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 
-/* ===== CINEMA BASE ===== */
 .cinema{
     position:fixed;
     width:100%;
@@ -17,18 +13,6 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     background:radial-gradient(circle,#140014,#000);
 }
 
-/* ===== FILM GRAIN ===== */
-.grain{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:url('https://i.imgur.com/8Qx6VJk.png');
-    opacity:0.08;
-    pointer-events:none;
-    z-index:50;
-}
-
-/* ===== FADE ===== */
 .fade{
     position:absolute;
     width:100%;
@@ -39,7 +23,6 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     transition:2.5s;
 }
 
-/* ===== START ===== */
 .start{
     position:absolute;
     width:100%;
@@ -78,7 +61,6 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 
 @keyframes fadeIn{to{opacity:1;}}
 
-/* ===== COUNTER ===== */
 .counter{
     position:absolute;
     top:4%;
@@ -91,7 +73,6 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 }
 .counter span{color:#ff4d6d}
 
-/* ===== SCENE ===== */
 .scene{
     position:absolute;
     width:100%;
@@ -108,17 +89,16 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     font-size:1.7em;
     max-width:80%;
     line-height:1.6;
-    animation:cinemaText 9s forwards;
+    animation:cinemaText 7s forwards;
 }
 
 @keyframes cinemaText{
-    0%{opacity:0;transform:translateY(40px);}
-    15%{opacity:1;transform:translateY(0);}
-    85%{opacity:1;}
-    100%{opacity:0;transform:translateY(-40px);}
+    0%{opacity:0;transform:translateY(40px);}    
+    15%{opacity:1;transform:translateY(0);}    
+    85%{opacity:1;}    
+    100%{opacity:0;transform:translateY(-40px);} 
 }
 
-/* ===== PHOTO SCENE ===== */
 .photo{
     position:absolute;
     width:100%;
@@ -133,7 +113,7 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
 .photo img{
     max-width:85%;
     border-radius:25px;
-    animation:photoZoom 18s forwards;
+    animation:photoZoom 14s forwards;
     box-shadow:0 0 60px rgba(255,255,255,0.4);
 }
 
@@ -144,7 +124,6 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     100%{transform:scale(1);opacity:0;}
 }
 
-/* ===== FINAL ===== */
 .final{
     position:absolute;
     width:100%;
@@ -160,7 +139,6 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     z-index:8;
 }
 
-/* ===== CREDITS ===== */
 .credits{
     position:absolute;
     width:100%;
@@ -169,7 +147,7 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     font-size:1.2em;
     opacity:0.8;
     z-index:9;
-    animation:creditsRoll 35s linear forwards;
+    animation:creditsRoll 25s linear forwards;
 }
 
 @keyframes creditsRoll{
@@ -177,76 +155,40 @@ body{background:black;overflow:hidden;font-family:'Georgia',serif;color:white}
     to{bottom:110%;}
 }
 
-/* ===== HEARTS ===== */
 .heart{
     position:absolute;
     font-size:16px;
     opacity:0.6;
-    animation:float 12s linear forwards;
+    animation:float 10s linear forwards;
 }
 
 @keyframes float{
-    from{transform:translateY(110vh);}
-    to{transform:translateY(-10vh);}
+    from{transform:translateY(110vh);}    
+    to{transform:translateY(-10vh);} 
 }
 
-/* ===== PLAYER ===== */
 #player{position:absolute;width:1px;height:1px;left:-9999px;}
-</style>
-</head>
-
-<body>
-
-<div class="cinema">
-
-<div class="fade" id="fade"></div>
-<div class="grain"></div>
-
-<div class="start" id="start">
+</style></head><body><div class="cinema"><div class="fade" id="fade"></div><div class="start" id="start">
     <h1>Nuestra historia 🖤</h1>
     <button onclick="startMovie()">Reproducir película 🎬</button>
-</div>
-
-<div class="counter" id="counter"></div>
-
-<!-- SCENES -->
-<div class="scene"><div class="text">6 de Enero de 2026 🖤</div></div>
+</div><div class="counter" id="counter"></div><div class="scene"><div class="text">6 de Enero de 2026 🖤</div></div>
 <div class="scene"><div class="text">Un mensaje que parecía pequeño…</div></div>
 <div class="scene"><div class="text">Pero terminó siendo el inicio de algo eterno.</div></div>
 <div class="scene"><div class="text">Hablamos hasta las 3 de la madrugada…</div></div>
 <div class="scene"><div class="text">Y desde ese día, cada noche tiene tu nombre.</div></div>
-<div class="scene"><div class="text">Mi lugar seguro eres tú.</div></div>
-
-<div class="photo"><img src="foto-el.jpg"></div>
-
-<div class="scene"><div class="text">La primera vez que te vi pasar en tu moto…</div></div>
-<div class="scene"><div class="text">Mi corazón ya sabía lo que venía.</div></div>
-
-<div class="photo"><img src="abrazo.jpg"></div>
-
-<div class="scene"><div class="text">Gracias por cuidarme.</div></div>
+<div class="scene"><div class="text">Mi lugar seguro eres tú.</div></div><div class="photo"><img src="foto-el.jpg"></div><div class="scene"><div class="text">La primera vez que te vi pasar en tu moto…</div></div>
+<div class="scene"><div class="text">Mi corazón ya sabía lo que venía.</div></div><div class="photo"><img src="abrazo.jpg"></div><div class="scene"><div class="text">Gracias por cuidarme.</div></div>
 <div class="scene"><div class="text">Gracias por elegirme.</div></div>
-<div class="scene"><div class="text">Gracias por quedarte.</div></div>
-
-<div class="final" id="final">
+<div class="scene"><div class="text">Gracias por quedarte.</div></div><div class="final" id="final">
     <div>Pío Pío 🐥❤️</div><br>
     <div>Me haces muy feliz.</div><br>
     <div>Esto apenas comienza…</div>
-</div>
-
-<div class="credits" id="credits">
+</div><div class="credits" id="credits">
     <br><br>
     Nuestra Historia<br><br>
     Una película hecha con amor 🖤<br><br>
     Para siempre…
-</div>
-
-<div id="player"></div>
-
-</div>
-
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
+</div><div id="player"></div></div><script src="https://www.youtube.com/iframe_api"></script><script>
 let player,ready=false;
 
 function onYouTubeIframeAPIReady(){
@@ -267,7 +209,6 @@ function startMovie(){
     startHearts();
 }
 
-/* COUNTER */
 function startCounter(){
     const startDate=new Date("2026-01-06T00:00:00");
     setInterval(()=>{
@@ -282,38 +223,34 @@ function startCounter(){
     },1000);
 }
 
-/* SCENES */
 function startScenes(){
-    const scenes=document.querySelectorAll(".scene,.photo");
+    const scenes=document.querySelectorAll('.scene,.photo');
     scenes.forEach((el,i)=>{
         setTimeout(()=>{
             el.style.opacity="1";
-            setTimeout(()=>{el.style.opacity="0";},10000);
-        },i*10500);
+            setTimeout(()=>{el.style.opacity="0";},6000);
+        },i*6500);
     });
 
     setTimeout(()=>{
         document.getElementById("final").style.opacity="1";
-    },scenes.length*10500);
+    },scenes.length*6500);
 
     setTimeout(()=>{
-        document.getElementById("credits").style.animation="creditsRoll 35s linear forwards";
-    },scenes.length*10500+12000);
+        document.getElementById("credits").style.animation="creditsRoll 25s linear forwards";
+    },scenes.length*6500+8000);
 }
 
-/* HEARTS */
 function startHearts(){
     setInterval(()=>{
-        const h=document.createElement("div");
-        h.className="heart";
-        h.innerHTML="❤";
-        h.style.left=Math.random()*100+"vw";
-        h.style.fontSize=(12+Math.random()*18)+"px";
+        const h=document.createElement('div');
+        h.className='heart';
+        h.innerHTML='❤';
+        h.style.left=Math.random()*100+'vw';
+        h.style.fontSize=(12+Math.random()*18)+'px';
         document.body.appendChild(h);
-        setTimeout(()=>h.remove(),12000);
-    },900);
+        setTimeout(()=>h.remove(),10000);
+    },800);
 }
-</script>
-
-</body>
+</script></body>
 </html>
