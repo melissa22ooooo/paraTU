@@ -3,154 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti 🖤</title>
+<title>Para Pío Pío 🐥❤️</title>
 
 <style>
-body {
-    margin: 0;
+body{
+    margin:0;
+    overflow:hidden;
+    background:black;
     font-family: 'Georgia', serif;
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
-    background: black;
+    color:white;
 }
 
-.video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
+/* Fondo pollitos */
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("https://i.imgur.com/7b1G6QG.png");
+    background-size:200px;
+    opacity:0.15;
+    animation:moveBg 25s linear infinite;
+    z-index:-2;
 }
 
-.video-background iframe {
-    width: 100vw;
-    height: 56.25vw;
-    min-height: 100vh;
-    min-width: 177.77vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+@keyframes moveBg{
+    from{background-position:0 0;}
+    to{background-position:400px 400px;}
 }
 
-.overlay {
-    background: rgba(0,0,0,0.6);
-    min-height: 100vh;
-    padding: 50px 20px;
+/* Corazones */
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:20px;
+    animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+    from{transform:translateY(100vh);opacity:1;}
+    to{transform:translateY(-10vh);opacity:0;}
 }
 
-img {
-    max-width: 80%;
-    border-radius: 15px;
-    margin: 30px 0;
-    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+/* Slides texto */
+.slide{
+    position:absolute;
+    width:100%;
+    top:40%;
+    text-align:center;
+    opacity:0;
+    padding:0 20px;
+    animation:fade 8s infinite;
 }
 
-.abrazo {
-    max-width: 90%;
+@keyframes fade{
+    0%{opacity:0;}
+    20%{opacity:1;}
+    80%{opacity:1;}
+    100%{opacity:0;}
 }
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
+.slide:nth-child(1){animation-delay:0s;}
+.slide:nth-child(2){animation-delay:8s;}
+.slide:nth-child(3){animation-delay:16s;}
+.slide:nth-child(4){animation-delay:24s;}
+.slide:nth-child(5){animation-delay:32s;}
+.slide:nth-child(6){animation-delay:40s;}
+.slide:nth-child(7){animation-delay:48s;}
+
+/* Foto final */
+.final-photo{
+    position:absolute;
+    top:20%;
+    width:100%;
+    text-align:center;
+    opacity:0;
+    animation:showFinal 8s forwards;
+    animation-delay:56s;
 }
 
-p {
-    font-size: 1.2em;
-    max-width: 700px;
-    margin: 20px auto;
-    line-height: 1.6;
+.final-photo img{
+    max-width:80%;
+    border-radius:15px;
+    box-shadow:0 0 25px rgba(255,255,255,0.4);
+}
+
+@keyframes showFinal{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* Texto final */
+.final-text{
+    position:absolute;
+    width:100%;
+    top:75%;
+    text-align:center;
+    font-size:2em;
+    opacity:0;
+    animation:showFinal 6s forwards;
+    animation-delay:60s;
+}
+
+/* Carta cerrándose */
+.letter{
+    position:fixed;
+    bottom:-100%;
+    left:0;
+    width:100%;
+    height:100%;
+    background:white;
+    z-index:5;
+    animation:closeLetter 4s forwards;
+    animation-delay:66s;
+}
+
+@keyframes closeLetter{
+    from{bottom:-100%;}
+    to{bottom:0;}
+}
+
+/* Video oculto */
+#player{
+    position:absolute;
+    width:1px;
+    height:1px;
+    left:-9999px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="video-background">
-    <iframe 
-        src="https://www.youtube.com/embed/JwAS9f_b8Js?autoplay=1&mute=0&loop=1&playlist=JwAS9f_b8Js&controls=0&showinfo=0&modestbranding=1"
-        frameborder="0"
-        allow="autoplay"
-        allowfullscreen>
-    </iframe>
+<div class="background"></div>
+
+<div class="slide"><h1>6 de Enero 🖤</h1></div>
+<div class="slide"><h1>Todo empezó con un mensaje… y hablamos hasta las 3am.</h1></div>
+<div class="slide"><h1>Desde entonces, despierto esperando tu mensaje.</h1></div>
+<div class="slide"><h1>Entre llamadas y videollamadas…</h1></div>
+<div class="slide"><h1>Descubrí que mi parte favorita es tu risa.</h1></div>
+<div class="slide"><h1>Cuando te ríes, yo también sonrío.</h1></div>
+<div class="slide"><h1>El primer abrazo… la emoción sigue aquí.</h1></div>
+
+<div class="final-photo">
+    <img src="abrazo.jpg" alt="Nuestro abrazo">
 </div>
 
-<div class="overlay">
-
-<h1>6 de Enero 🖤</h1>
-
-<p>
-Todo empezó con un mensaje en Instagram...  
-y sin darme cuenta, hablamos hasta las 3 de la madrugada,
-aunque al día siguiente tenía clases.
-</p>
-
-<p>
-Desde entonces, cada mañana despierto
-esperando ver tu mensaje.
-</p>
-
-<img src="foto-el.jpg" alt="Él">
-
-<p>
-Entre mensajes, llamadas y videollamadas,
-descubrí que mi parte favorita del día es escucharte.
-</p>
-
-<p>
-Pero lo que más me gusta...
-es tu risa.
-</p>
-
-<p>
-Porque cuando te ríes,
-yo también sonrío aunque esté sola.
-</p>
-
-<p>
-Siempre te digo "tas bien bonito",
-y lo digo porque lo siento.
-</p>
-
-<p>
-Nunca voy a olvidar el primer día que te vi pasar en tu moto.
-Intenté actuar normal…
-pero me sonrojé.
-Y desde entonces soy tu "rojita".
-</p>
-
-<p>
-Recuerdo el primer abrazo.
-El primer beso en la frente.
-Los nervios.
-La emoción.
-</p>
-
-<img src="foto-abrazo.jpg" class="abrazo" alt="Nuestro abrazo">
-
-<p>
-Esa emoción sigue ahí.
-Cada vez que te veo.
-Cada vez que te escucho.
-Cada vez que te pienso.
-</p>
-
-<p>
-Gracias por haber sido el primero en decir "te amo".
-Gracias por enseñarme que el amor puede ser bonito.
-</p>
-
-<p>
-Y si algún día dudas…
-recuerda esto:
-me haces feliz.
-</p>
-
+<div class="final-text">
+    Pío Pío 🐥❤️
 </div>
+
+<div class="letter"></div>
+
+<div id="player"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+function onYouTubeIframeAPIReady(){
+    new YT.Player('player',{
+        videoId:'JwAS9f_b8Js',
+        playerVars:{
+            autoplay:1,
+            loop:1,
+            playlist:'JwAS9f_b8Js',
+            controls:0
+        },
+        events:{
+            onReady:function(event){
+                event.target.setVolume(50);
+                event.target.playVideo();
+            }
+        }
+    });
+}
+
+/* Corazones flotando */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},8000);
+}
+setInterval(createHeart,500);
+</script>
 
 </body>
 </html>
