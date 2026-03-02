@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Pío Pío 🖤</title>
+<title>Nuestra historia 🖤</title>
 
 <style>
 body{
     margin:0;
     overflow:hidden;
-    background:black;
+    background:linear-gradient(to bottom,#000000,#1a001a);
     font-family:'Georgia',serif;
     color:white;
     text-align:center;
 }
 
-/* Pantalla inicial */
+/* Pantalla inicio */
 .start-screen{
     position:fixed;
     width:100%;
@@ -29,14 +29,14 @@ body{
 }
 
 .start-btn{
-    padding:15px 30px;
+    padding:16px 35px;
     font-size:1.2em;
     background:white;
     color:black;
     border:none;
     border-radius:30px;
     cursor:pointer;
-    transition:0.3s;
+    transition:0.4s;
 }
 
 .start-btn:hover{
@@ -47,13 +47,14 @@ body{
 /* Contador */
 .counter{
     position:absolute;
-    top:8%;
+    top:6%;
     width:100%;
-    font-size:1.05em;
+    font-size:1em;
+    opacity:0.9;
 }
 
 .counter span{
-    font-size:1.4em;
+    font-size:1.2em;
     color:#ff4d6d;
 }
 
@@ -63,7 +64,8 @@ body{
     width:100%;
     top:40%;
     opacity:0;
-    padding:0 20px;
+    padding:0 25px;
+    font-size:1.3em;
 }
 
 .fade{
@@ -81,36 +83,31 @@ body{
 .photo{
     position:absolute;
     width:100%;
-    text-align:center;
+    top:22%;
     opacity:0;
+    transition:2s;
 }
 
 .photo img{
     max-width:85%;
-    border-radius:15px;
-    box-shadow:0 0 25px rgba(255,255,255,0.4);
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(255,255,255,0.4);
 }
 
-#fotoEl{
-    top:25%;
-}
-
-#fotoAbrazo{
-    top:25%;
-}
-
+/* Final dulce */
 .final-text{
     position:absolute;
     width:100%;
-    top:75%;
-    font-size:2em;
+    top:70%;
+    font-size:1.8em;
     opacity:0;
+    transition:3s;
 }
 
-/* Pollitos y corazones */
-.chick, .heart{
+/* Corazones flotando */
+.heart{
     position:absolute;
-    font-size:22px;
+    font-size:20px;
     animation:float linear infinite;
 }
 
@@ -119,7 +116,6 @@ body{
     to{transform:translateY(-10vh);opacity:0;}
 }
 
-/* Video oculto */
 #player{
     position:absolute;
     width:1px;
@@ -140,25 +136,40 @@ body{
 
 <div class="counter" id="counter"></div>
 
-<div class="slide" id="s1">6 de Enero 🖤</div>
-<div class="slide" id="s2">Todo empezó con un mensaje… y hablamos hasta las 3am.</div>
-<div class="slide" id="s3">Desde entonces, despierto esperando tu mensaje.</div>
-<div class="slide" id="s4">Entre llamadas y videollamadas…</div>
-<div class="slide" id="s5">Descubrí que mi parte favorita es tu risa.</div>
+<div class="slide">6 de Enero de 2026 🖤</div>
+<div class="slide">Un mensaje que parecía pequeño…</div>
+<div class="slide">Pero que terminó siendo el inicio de algo muy grande.</div>
+<div class="slide">Hablamos hasta las 3 de la madrugada…</div>
+<div class="slide">Y desde ese día, cada noche tiene tu nombre.</div>
+<div class="slide">Descubrí que mi parte favorita del día… eres tú.</div>
+<div class="slide">Tu voz.</div>
+<div class="slide">Tu risa.</div>
+<div class="slide">Tu forma de hacerme sentir tranquila.</div>
 
 <div class="photo" id="fotoEl">
-    <img src="foto-el.jpg" alt="Él">
+    <img src="foto-el.jpg">
 </div>
 
-<div class="slide" id="s6">Cuando te ríes, yo también sonrío.</div>
-<div class="slide" id="s7">El primer abrazo… la emoción sigue aquí.</div>
+<div class="slide">La primera vez que te vi pasar en tu moto…</div>
+<div class="slide">Intenté actuar normal.</div>
+<div class="slide">Pero terminé sonrojándome.</div>
+<div class="slide">Y desde entonces soy tu “rojita”.</div>
+<div class="slide">El primer abrazo.</div>
+<div class="slide">El primer beso en la frente.</div>
+<div class="slide">Ese momento donde todo se sintió correcto.</div>
 
 <div class="photo" id="fotoAbrazo">
-    <img src="abrazo.jpg" alt="Nuestro abrazo">
+    <img src="abrazo.jpg">
 </div>
 
+<div class="slide">Gracias por cuidarme.</div>
+<div class="slide">Gracias por elegir quedarte.</div>
+<div class="slide">Gracias por hacerme sentir especial.</div>
+
 <div class="final-text" id="finalText">
-    Pío Pío 🐥❤️
+    Pío Pío 🐥❤️<br>
+    Me haces muy feliz.<br><br>
+    Y esto apenas empieza.
 </div>
 
 </div>
@@ -182,75 +193,62 @@ function startExperience(){
     document.getElementById("content").style.display="block";
     player.playVideo();
     startSlides();
-    startAnimation();
+    startHearts();
     startCounter();
 }
 
-/* CONTADOR EN TIEMPO REAL */
+/* Contador en tiempo real */
 function startCounter(){
     const startDate = new Date("2026-01-06T00:00:00");
-
     setInterval(()=>{
         const now = new Date();
         let diff = now - startDate;
         if(diff < 0) diff = 0;
 
-        const days = Math.floor(diff / (1000*60*60*24));
-        const hours = Math.floor((diff / (1000*60*60)) % 24);
-        const minutes = Math.floor((diff / (1000*60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
+        const d = Math.floor(diff/(1000*60*60*24));
+        const h = Math.floor((diff/(1000*60*60))%24);
+        const m = Math.floor((diff/(1000*60))%60);
+        const s = Math.floor((diff/1000)%60);
 
         document.getElementById("counter").innerHTML =
-        `Llevamos <span>${days}</span> días 
-        <span>${hours}</span> horas 
-        <span>${minutes}</span> minutos 
-        <span>${seconds}</span> segundos 
-        desde aquel 6 de Enero 🖤`;
+        `Llevamos <span>${d}</span> días 
+        <span>${h}</span> horas 
+        <span>${m}</span> minutos 
+        <span>${s}</span> segundos 🖤`;
     },1000);
 }
 
-/* Slides y fotos */
+/* Secuencia */
 function startSlides(){
-    const slides=["s1","s2","s3","s4","s5","s6","s7"];
-    slides.forEach((id,index)=>{
+    const slides = document.querySelectorAll(".slide");
+    slides.forEach((slide,index)=>{
         setTimeout(()=>{
-            document.getElementById(id).classList.add("fade");
+            slide.classList.add("fade");
         }, index*8000);
     });
 
-    setTimeout(()=>{
-        document.getElementById("fotoEl").style.opacity="1";
-    },32000);
+    /* foto él */
+    setTimeout(()=>{document.getElementById("fotoEl").style.opacity="1";},64000);
+    setTimeout(()=>{document.getElementById("fotoEl").style.opacity="0";},78000);
 
-    setTimeout(()=>{
-        document.getElementById("fotoEl").style.opacity="0";
-    },40000);
+    /* foto abrazo (más importante y más tiempo) */
+    setTimeout(()=>{document.getElementById("fotoAbrazo").style.opacity="1";},104000);
 
-    setTimeout(()=>{
-        document.getElementById("fotoAbrazo").style.opacity="1";
-    },56000);
-
-    setTimeout(()=>{
-        document.getElementById("finalText").style.opacity="1";
-    },60000);
+    /* cierre dulce mientras sigue el abrazo */
+    setTimeout(()=>{document.getElementById("finalText").style.opacity="1";},120000);
 }
 
-/* Animaciones */
-function createEmoji(symbol,interval){
+/* Corazones */
+function startHearts(){
     setInterval(()=>{
-        const el=document.createElement("div");
-        el.className = symbol==="🐥" ? "chick" : "heart";
-        el.innerHTML=symbol;
-        el.style.left=Math.random()*100+"vw";
-        el.style.animationDuration=(4+Math.random()*6)+"s";
-        document.body.appendChild(el);
-        setTimeout(()=>{el.remove();},10000);
-    },interval);
-}
-
-function startAnimation(){
-    createEmoji("🐥",800);
-    createEmoji("❤",500);
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(4+Math.random()*6)+"s";
+        document.body.appendChild(heart);
+        setTimeout(()=>{heart.remove();},10000);
+    },700);
 }
 
 </script>
