@@ -6,26 +6,27 @@
 <title>Nuestra historia 🖤</title>
 
 <style>
-body{
+html,body{
     margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
     overflow:hidden;
-    background:linear-gradient(to bottom,#000000,#120012);
     font-family:'Georgia',serif;
+    background:radial-gradient(circle at top,#120012,#000000 70%);
     color:white;
-    text-align:center;
 }
 
 /* INICIO */
 .start-screen{
     position:fixed;
-    width:100%;
-    height:100%;
+    inset:0;
     background:black;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    z-index:10;
+    z-index:1000;
 }
 
 .start-btn{
@@ -36,12 +37,13 @@ body{
     border:none;
     border-radius:30px;
     cursor:pointer;
-    transition:0.3s;
 }
 
-.start-btn:hover{
-    background:#ff4d6d;
-    color:white;
+/* CONTENIDO */
+#content{
+    position:fixed;
+    inset:0;
+    z-index:1;
 }
 
 /* CONTADOR */
@@ -49,52 +51,60 @@ body{
     position:absolute;
     top:4%;
     width:100%;
-    font-size:0.95em;
-    opacity:0.9;
+    text-align:center;
+    font-size:1em;
+    z-index:10;
 }
-.counter span{ color:#ff4d6d; }
+.counter span{color:#ff4d6d;}
 
 /* ESCENAS */
 .scene{
     position:absolute;
+    top:45%;
     width:100%;
-    top:42%;
-    opacity:0;
-    font-size:1.4em;
+    text-align:center;
+    font-size:1.5em;
     padding:0 20px;
-    transition:1s;
+    opacity:0;
+    transition:opacity 0.8s ease;
+    z-index:5;
 }
 
 /* FOTOS */
 .photo{
     position:absolute;
+    top:18%;
     width:100%;
-    top:22%;
+    text-align:center;
     opacity:0;
-    transition:1.5s;
+    transition:opacity 1.2s ease;
+    z-index:6;
 }
 
 .photo img{
     max-width:85%;
     border-radius:20px;
-    box-shadow:0 0 40px rgba(255,255,255,0.4);
+    box-shadow:0 0 35px rgba(255,255,255,0.4);
 }
 
 /* FINAL */
 .final{
     position:absolute;
-    width:100%;
     top:65%;
+    width:100%;
+    text-align:center;
     font-size:1.8em;
     opacity:0;
-    transition:2s;
+    transition:opacity 2s ease;
+    z-index:10;
 }
 
 /* CORAZONES */
 .heart{
     position:absolute;
-    font-size:20px;
+    font-size:18px;
     animation:float linear infinite;
+    z-index:2;
 }
 
 @keyframes float{
@@ -103,12 +113,7 @@ body{
 }
 
 /* PLAYER OCULTO */
-#player{
-    position:absolute;
-    width:1px;
-    height:1px;
-    left:-9999px;
-}
+#player{display:none;}
 </style>
 </head>
 
@@ -123,7 +128,6 @@ body{
 
 <div class="counter" id="counter"></div>
 
-<!-- ESCENAS -->
 <div class="scene">6 de Enero de 2026 🖤</div>
 <div class="scene">Un mensaje que parecía pequeño…</div>
 <div class="scene">Pero que terminó siendo el inicio de algo muy grande.</div>
@@ -134,9 +138,7 @@ body{
 <div class="scene">Tu risa.</div>
 <div class="scene">Tu forma de hacerme sentir tranquila.</div>
 
-<div class="photo">
-    <img src="foto-el.jpg">
-</div>
+<div class="photo"><img src="foto-el.jpg"></div>
 
 <div class="scene">La primera vez que te vi pasar en tu moto…</div>
 <div class="scene">Intenté actuar normal.</div>
@@ -146,9 +148,7 @@ body{
 <div class="scene">El primer beso en la frente.</div>
 <div class="scene">Ese momento donde todo se sintió correcto.</div>
 
-<div class="photo">
-    <img src="abrazo.jpg">
-</div>
+<div class="photo"><img src="abrazo.jpg"></div>
 
 <div class="scene">Gracias por cuidarme.</div>
 <div class="scene">Gracias por elegir quedarte.</div>
@@ -166,26 +166,22 @@ body{
 
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
-
-let player;
-let playerReady=false;
+let player,playerReady=false;
 
 function onYouTubeIframeAPIReady(){
     player=new YT.Player('player',{
         videoId:'JwAS9f_b8Js',
         playerVars:{autoplay:0,loop:1,playlist:'JwAS9f_b8Js'},
-        events:{ onReady:()=>{playerReady=true;} }
+        events:{onReady:()=>playerReady=true}
     });
 }
 
 function startExperience(){
     document.getElementById("startScreen").style.display="none";
     document.getElementById("content").style.display="block";
-
     startScenes();
     startHearts();
     startCounter();
-
     if(playerReady) player.playVideo();
 }
 
@@ -202,24 +198,20 @@ function startCounter(){
         const m=Math.floor((diff/(1000*60))%60);
         const s=Math.floor((diff/1000)%60);
 
-        document.getElementById("counter").innerHTML=
-        `Llevamos <span>${d}</span> días 
-         <span>${h}</span> horas 
-         <span>${m}</span> minutos 
-         <span>${s}</span> segundos 🖤`;
+        counter.innerHTML=`<span>${d}</span>d <span>${h}</span>h <span>${m}</span>m <span>${s}</span>s 🖤`;
     },1000);
 }
 
 /* ESCENAS RÁPIDAS */
 function startScenes(){
     const scenes=document.querySelectorAll('.scene,.photo');
-    const duration=5000;   // 5s visibles
-    const gap=5200;        // 5.2s entre escenas
+    const visible=4000; // 4s visible
+    const gap=4200;     // 4.2s entre escenas
 
     scenes.forEach((el,i)=>{
         setTimeout(()=>{
             el.style.opacity="1";
-            setTimeout(()=>{el.style.opacity="0";},duration);
+            setTimeout(()=>{el.style.opacity="0";},visible);
         },i*gap);
     });
 
@@ -231,16 +223,15 @@ function startScenes(){
 /* CORAZONES */
 function startHearts(){
     setInterval(()=>{
-        const heart=document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="❤";
-        heart.style.left=Math.random()*100+"vw";
-        heart.style.animationDuration=(4+Math.random()*4)+"s";
-        document.body.appendChild(heart);
-        setTimeout(()=>{heart.remove();},8000);
-    },600);
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="❤";
+        h.style.left=Math.random()*100+"vw";
+        h.style.animationDuration=(4+Math.random()*4)+"s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),8000);
+    },500);
 }
-
 </script>
 
 </body>
